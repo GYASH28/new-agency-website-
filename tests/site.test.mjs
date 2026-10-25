@@ -40,3 +40,25 @@ test('Approved Indian pricing and contact consent-first flow are retained', () =
   assert.match(site,/form\.reportValidity/);
   assert.doesNotMatch(site, /fetch\(|XMLHttpRequest/);
 });
+
+test('New brand motion remains self-hosted, accessible, and respects reduced motion', () => {
+  const home=read('index.html');
+  for(const page of htmlFiles){
+    const text=read(page);
+    assert.match(text,/footer-wordmark/);
+    assert.match(text,/styles\/material-motion\.css/);
+    assert.match(text,/scripts\/material-motion\.js/);
+  }
+  assert.match(home,/data-particle-field/);
+  assert.match(home,/signature-motion/);
+  assert.match(home,/aria-hidden="true"><\/canvas>/);
+  const script=read('scripts/material-motion.js');
+  assert.match(script,/prefers-reduced-motion/);
+  assert.match(script,/IntersectionObserver/);
+  assert.match(script,/ResizeObserver/);
+  assert.match(script,/document\.hidden/);
+  assert.doesNotMatch(script,/fetch\(|XMLHttpRequest/);
+  const sheet=read('styles/material-motion.css');
+  assert.match(sheet,/footer-wordmark/);
+  assert.match(sheet,/prefers-reduced-motion/);
+});
