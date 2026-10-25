@@ -421,3 +421,15 @@ html{scroll-behavior:auto}
 .direction-visual strong{font-size:clamp(42px,11vw,55px)}
 .service-essay-copy h2{font-size:clamp(47px,11vw,62px)}
 }
+
+@media(max-width:760px){
+.studio-story-grid{grid-template-columns:minmax(0,1fr)}
+.studio-story-copy,.studio-portrait{min-width:0;max-width:100%}
+.studio-story h1{font-size:clamp(46px,12.4vw,82px)}
+.principles-grid{grid-template-columns:minmax(0,1fr)}
+.principles-grid article{min-height:unset;margin:0;padding:25px 0;border-right:0;border-bottom:1px solid #cfd2ce}
+.principles-grid article:nth-child(2){border-right:0}
+.principles-grid h3{font-size:30px;margin:14px 0 10px}
+.principles-grid p{font-size:12px;max-width:390px}
+}
+@media(max-width:390px){.studio-story h1{font-size:clamp(44px,12vw,50px)}}
