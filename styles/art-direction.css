@@ -294,3 +294,28 @@ a,button{touch-action:manipulation}
  .showreel-project:hover .showreel-art{transform:none}
  .brayro-ticker-track{animation:none}
 }
+
+/* Closing editorial panel / services */
+.practice-notes{background:#1a2b32;color:#f6f1e8;overflow:hidden}
+.practice-top{display:grid;grid-template-columns:.3fr 1fr;gap:clamp(25px,6vw,100px);border-top:1px solid #b6ccc44d;padding-top:26px;margin-bottom:110px}
+.practice-top .kicker{color:#b9c9c8}
+.practice-top h2{font:550 clamp(66px,8.7vw,138px)/.92 Space,Manrope,sans-serif;letter-spacing:-.09em;margin:0}
+.practice-top h2 em{font-family:Instrument,serif;font-style:italic;color:#efa07d;font-weight:400}
+.practice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.practice-grid article{border-top:1px solid #a8c0bd55;padding:25px 12px 24px 0;position:relative;min-height:250px}
+.practice-grid article:before{content:"";position:absolute;top:-2px;left:0;width:0;height:3px;background:#ec916f;transition:width .65s cubic-bezier(.22,1,.36,1)}
+.practice-grid article:hover:before{width:100%}
+.practice-grid article span{display:block;font:800 10px Manrope,sans-serif;letter-spacing:.13em;color:#a9c1c2;margin-bottom:38px}
+.practice-grid article strong{display:block;font:450 clamp(29px,3vw,47px)/1.08 Space,Manrope,sans-serif;letter-spacing:-.055em;margin-bottom:19px}
+.practice-grid article p{color:#bac8c7;max-width:340px;line-height:1.85;font-size:13px}
+.showreel-art .showreel-big{translate:var(--art-x,0px) var(--art-y,0px);transition:translate .35s cubic-bezier(.22,1,.36,1)}
+@media(max-width:760px){
+ .practice-top{grid-template-columns:1fr;gap:28px;margin-bottom:70px}
+ .practice-top h2{font-size:clamp(60px,13vw,90px)}
+ .practice-grid{grid-template-columns:1fr;gap:8px}
+ .practice-grid article{min-height:0;padding:25px 0 32px}
+ .practice-grid article span{margin-bottom:23px}
+ .practice-grid article strong{font-size:35px}
+ .showreel-art .showreel-big{translate:none}
+}
+@media(prefers-reduced-motion:reduce){.showreel-art .showreel-big{transition:none;translate:none}}
