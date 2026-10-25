@@ -459,3 +459,20 @@ h1 em,h2 em,h3 em{letter-spacing:-.035em;font-style:italic}
  .case-controls button,.case-photo .case-phone,.studio-faq summary::after,
  .practice-grid article::before{transition:none!important}
 }
+
+
+/* Bring real work into the first desktop viewport: the product—not empty
+   space—should complete the editorial intro, as on Craft's product pages. */
+@media(min-width:761px){
+ body[data-route="/work"] .page-lead{padding-bottom:62px}
+ body[data-route="/work"] .case-section{padding-top:71px}
+ body[data-route="/work"] .case-head{margin-bottom:27px}
+}
+/* Let the case image hold the scene as a framed product, not a flat gray box. */
+.case-photo{
+ background:linear-gradient(155deg,#d8e5e9 0%,#f0e9df 100%);
+ border:1px solid #e0e8e8;
+}
+.case-photo>img:first-child{box-shadow:0 19px 56px #1b40552c}
+/* Buttons remain accessible and quiet even on touch devices. */
+@media(hover:none){.case-controls button:hover{transform:none}}
