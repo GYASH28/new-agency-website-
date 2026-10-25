@@ -446,3 +446,9 @@ html{scroll-behavior:auto}
 .principles-grid article:nth-child(2){border-right:0}
 .principles-grid h3{font-size:clamp(27px,3vw,34px)}
 }
+
+/* Final screenshot review: preserve the integrity of the real client screenshot. */
+@media(max-width:760px){
+.featured-image{height:auto;min-height:240px;display:flex;align-items:flex-end;padding:28px 20px 0}
+.featured-image img{display:block;width:100%;height:auto;object-fit:contain;object-position:left top;border-radius:8px 8px 0 0}
+}
