@@ -1,0 +1,80 @@
+/* BRAYRO / Material & Motion — original light-surface treatment inspired by the Craft layout.
+   The signed BRAYRO mark and particle material are adapted from our own agency visual system. */
+:root { --sc-deep:#101c27; --sc-cobalt:#3c72cc; --sc-orange:#ff8855; }
+html { scroll-padding-top: 110px; }
+body { overflow-x:clip; }
+.nav-shell {box-shadow:0 12px 42px rgba(20,55,70,.13),0 1px 0 rgba(255,255,255,.9) inset;}
+.nav-cta {background:linear-gradient(140deg,#132631,#244a61)}
+.hero {background:linear-gradient(180deg,#bce5f7 0%,#d6edfa 57%,#f8f5ef 100%);}
+.hero-content h1 {font-weight:510; text-wrap:balance;}
+.hero-content h1 em {color:#355365;}
+.hero .hero-intro {max-width:535px;}
+.hero-paper {opacity:.9;}
+.hero-note .pulse {animation:brayroPulse 3.3s ease-in-out infinite}
+@keyframes brayroPulse {50%{box-shadow:0 0 0 11px #fd8b5b12}}
+.workspace {box-shadow:0 44px 100px rgba(28,72,103,.24), 0 5px 20px #152b3720; outline:1px solid #ffffffaa; outline-offset:3px;}
+.workspace::after {content:"";pointer-events:none;position:absolute;inset:0;border-radius:19px;box-shadow:inset 0 1px 0 #fff9;}
+/* The home product mock-up now has three user-operated modes. */
+.workspace-tabs {display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin:0 0 17px;}
+.workspace-tab {border:1px solid transparent;background:#eef3f5;color:#657782;padding:8px 14px;border-radius:30px;min-height:34px;font:700 10px Manrope,sans-serif;transition:background .22s,transform .22s,color .22s;}
+.workspace-tab[aria-selected=true]{background:#263c4c;color:#fff;box-shadow:0 6px 14px #1d34432a}
+.workspace-tab:hover {transform:translateY(-2px)}
+.workspace[data-workspace-mode=build] .workspace-canvas {background:radial-gradient(circle at 92% 8%,#fde3d4,transparent 40%)}
+.workspace[data-workspace-mode=ai] .workspace-canvas {background:radial-gradient(circle at 92% 8%,#dee4fb,transparent 45%)}
+/* Signature artwork: interactive 2D point field. Static content is never gated on animation. */
+.signal-section {background:#141f2c;color:#f7f1e7;position:relative;isolation:isolate;overflow:hidden;padding:clamp(75px,8vw,116px) 0;}
+.signal-section:before {content:"";pointer-events:none;position:absolute;inset:0;background:radial-gradient(ellipse at 74% 36%,#315e8b72,transparent 50%),radial-gradient(ellipse at 6% 78%,#f17a4540,transparent 42%)}
+.signal-layout {position:relative;display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(25px,5vw,75px);align-items:center;}
+.signal-copy {position:relative;z-index:3;}
+.signal-copy .eyebrow {color:#b6c5d3;}
+.signal-copy h2 {font-size:clamp(48px,5.9vw,93px);line-height:.95;letter-spacing:-.075em;margin:21px 0 26px}
+.signal-copy h2 em{color:#d9e6fb}
+.signal-copy p:not(.eyebrow){color:#bfc9d5;font-size:14px;line-height:1.8;max-width:420px;}
+.signal-copy .button{margin-top:12px;}
+.signal-art {position:relative;aspect-ratio:1.26;min-height:360px;border-radius:30px;overflow:hidden;border:1px solid #b8c9e532;background:radial-gradient(circle at 50% 52%,#3e63813a,transparent 58%),#172839;box-shadow:inset 0 1px #ffffff2d,0 24px 75px #060f2040;}
+.signal-art::before {content:"";position:absolute;inset:0;background-image:linear-gradient(#d9e9ff09 1px,transparent 1px),linear-gradient(90deg,#d9e9ff09 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(to bottom,#0009,transparent);pointer-events:none}
+.signal-art canvas {position:absolute;inset:0;width:100%;height:100%;display:block;}
+.signal-notation {position:absolute;z-index:2;font:700 9px SpaceGrotesk,Manrope,sans-serif;letter-spacing:.19em;color:#b7d0df;pointer-events:none}
+.signal-notation.top {top:25px;left:28px}.signal-notation.bottom {bottom:25px;right:28px}
+.signal-icon {position:absolute;left:27px;bottom:24px;width:37px;height:37px;object-fit:contain;opacity:.78;filter:drop-shadow(0 0 10px #ff86435a);}
+.signal-stamp {border:1px solid #abbdd058;display:inline-flex;gap:10px;align-items:center;padding:10px 13px;border-radius:999px;color:#d9e4ec;font:700 10px SpaceGrotesk,sans-serif;margin:16px 0 22px;}
+.signal-stamp::before {content:"";width:6px;height:6px;border-radius:50%;background:#ff965e;box-shadow:0 0 0 5px #ff965e21;}
+/* A brand signature, never an imitation of the Craft logotype. */
+.site-footer {overflow:hidden;position:relative;}
+.footer-signature-wrap {border-top:1px solid #ffffff1d;padding:31px 0 18px;position:relative;overflow:hidden}
+.footer-signature-top {display:flex;justify-content:space-between;gap:20px;align-items:center;color:#a6b9bf;font:700 10px SpaceGrotesk,sans-serif;letter-spacing:.16em;text-transform:uppercase;}
+.footer-signature-top span:last-child {color:#ffab7e}
+.footer-wordmark {display:block;position:relative;width:100%;border:0;text-align:center;background:transparent;color:#f7f1ea;font-family:SpaceGrotesk,Manrope,sans-serif;font-weight:700;font-size:clamp(78px,18.7vw,285px);letter-spacing:-.105em;line-height:1.07;white-space:nowrap;margin:14px 0 0;padding:0 .07em .02em 0;cursor:default;user-select:none;isolation:isolate;--pointer-x:50%;--pointer-y:50%;}
+.footer-wordmark::before {content:"BRAYRO";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle 210px at var(--pointer-x) var(--pointer-y),#ff996d 0%,#d5e9ff 49%,transparent 84%);background-clip:text;-webkit-background-clip:text;color:transparent;opacity:.85;transition:opacity .18s}
+.footer-wordmark::after {content:"";pointer-events:none;position:absolute;inset:18% 3%;z-index:-1;border-radius:50%;background:radial-gradient(ellipse,#ffa06b0c,transparent 66%);filter:blur(19px)}
+.footer-ai-mark {position:absolute;z-index:4;right:2px;top:15px;display:grid;place-items:center;width:clamp(31px,4.5vw,63px);aspect-ratio:1;transform:rotate(11deg);border-radius:12px;background:#ff9a69;color:#192733;font:850 clamp(10px,1.3vw,19px) SpaceGrotesk,sans-serif;letter-spacing:-.04em;box-shadow:0 11px 25px #0004}
+.footer-signature-bottom{display:flex;justify-content:space-between;gap:20px;align-items:center;color:#9caeb1;font-size:11px;padding:0 0 40px;}
+.footer-signature-bottom a{color:#e5e3dc;text-decoration:underline;text-underline-offset:5px}
+.footer-bottom{position:relative;z-index:2}
+/* Visual attention stays accessible & economical. */
+@media(max-width:900px){
+.signal-layout{grid-template-columns:1fr;gap:28px}
+.signal-copy h2{max-width:700px}
+.signal-art{max-width:680px;width:100%;margin:auto;min-height:300px}
+}
+@media(max-width:760px){
+.hero h1{letter-spacing:-.075em}
+.workspace-tabs{gap:4px;margin-bottom:9px}
+.workspace-tab{font-size:9px;min-height:31px;padding:7px 10px}
+.signal-section{padding:76px 0}
+.signal-copy h2{font-size:clamp(52px,11.3vw,79px)}
+.signal-art{aspect-ratio:1.05;min-height:295px;border-radius:20px}
+.footer-signature-wrap{padding-top:23px}
+.footer-signature-top,.footer-signature-bottom{font-size:9px;letter-spacing:.09em}
+.footer-wordmark{font-size:19vw;letter-spacing:-.108em;margin-top:24px}
+.footer-ai-mark{top:3px;right:2px;border-radius:7px}
+.footer-signature-bottom{padding-bottom:28px}
+}
+@media(max-width:390px){
+.footer-wordmark{font-size:18.7vw}
+.footer-signature-top{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){
+.hero-note .pulse{animation:none}
+.workspace-tab,.footer-wordmark::before{transition:none}
+}
