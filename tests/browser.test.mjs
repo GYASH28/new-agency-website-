@@ -38,6 +38,14 @@ await page.locator('[data-craft-tab="ai"]').press('ArrowRight');
 assert.equal(await page.locator('[data-craft-panel="direction"]').isVisible(),true);
 await page.locator('[data-craft-tab="web"]').click();
 
+const steps=page.locator('[data-process-stage]');
+assert.equal(await steps.count(),3,'Missing all studio process steps');
+await steps.nth(1).click();
+assert.match(await page.locator('[data-process-title]').textContent(),/own voice/);
+assert.equal(await steps.nth(1).getAttribute('aria-pressed'),'true');
+await steps.nth(1).press('ArrowDown');
+assert.match(await page.locator('[data-process-title]').textContent(),/effortless/);
+assert.equal(await steps.nth(2).getAttribute('aria-pressed'),'true');
 await page.goto(origin+'/work',{waitUntil:'networkidle'});
 assert.equal(await page.locator('.case-controls button[data-view]').count(),2,'Portfolio device switcher missing');
 const caseStyle=await page.locator('.case-controls button[data-view="desktop"]').evaluate(button=>({radius:getComputedStyle(button).borderRadius,background:getComputedStyle(button).backgroundColor}));

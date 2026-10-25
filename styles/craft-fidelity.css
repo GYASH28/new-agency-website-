@@ -476,3 +476,83 @@ h1 em,h2 em,h3 em{letter-spacing:-.035em;font-style:italic}
 .case-photo>img:first-child{box-shadow:0 19px 56px #1b40552c}
 /* Buttons remain accessible and quiet even on touch devices. */
 @media(hover:none){.case-controls button:hover{transform:none}}
+
+/* STUDIO NOTES — a tactile process tableau, not a fake software interface */
+.craft-path .craft-path-inner{align-items:start}
+.craft-path-intro{position:sticky;top:130px;align-self:start}
+.craft-process-workbench{min-width:0}
+.craft-process-steps{border:0;margin:0;padding:0;list-style:none}
+.craft-process-steps li{list-style:none;border:0;padding:0;display:block}
+.craft-process-steps button{display:grid;grid-template-columns:88px 1fr 22px;column-gap:13px;align-items:center;width:100%;min-height:86px;padding:18px 16px 18px 8px;text-align:left;background:none;border:0;border-top:1px solid #cbd8d5;border-radius:0;color:#354b50;transition:background .25s var(--craft-ease),padding .25s var(--craft-ease)}
+.craft-process-steps li:last-child button{border-bottom:1px solid #cbd8d5}
+.craft-process-steps button:hover{background:#eff5f1;padding-inline:15px}
+.craft-process-steps button[aria-pressed=true]{background:#e8f1ec;padding-inline:15px}
+.craft-process-steps button>span:first-child{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.11em;color:#81938d}
+.craft-process-steps button>strong{font:500 clamp(17px,1.6vw,23px)/1.22 Space,Manrope,sans-serif;letter-spacing:-.045em}
+.craft-step-arrow{font:400 22px Instrument,serif;color:#b87d64;opacity:.32;transform:translate(-4px,4px);transition:transform .24s,opacity .24s}
+.craft-process-steps button[aria-pressed=true] .craft-step-arrow,.craft-process-steps button:hover .craft-step-arrow{opacity:1;transform:translate(0,0)}
+.craft-process-board{padding:30px 35px 26px;background:#dbece7;position:relative;isolation:isolate;overflow:hidden;min-height:370px;border-radius:5px 5px 17px 17px}
+.craft-process-board::before{content:"";position:absolute;inset:0;opacity:.65;pointer-events:none;background:radial-gradient(circle at 80% 24%,#fff9,transparent 45%)}
+.craft-process-sheet{width:min(420px,90%);min-height:310px;padding:25px 29px 20px;margin:auto;position:relative;z-index:2;display:flex;flex-direction:column;align-items:start;background:#fffdf7;box-shadow:0 15px 39px #33544b24,0 2px 6px #355c4d0c;border:1px solid #e8e6dc;transform:rotate(-2.5deg);border-radius:5px}
+.craft-sheet-meta{display:flex;justify-content:space-between;align-items:center;gap:25px;width:100%;font:800 9px Manrope,Arial,sans-serif;color:#82918d;letter-spacing:.1em}
+.craft-sheet-art{position:relative;width:100%;height:70px;display:flex;gap:8px;align-items:center;padding:8px 4px;margin:13px 0 14px}
+.craft-sheet-art i{display:block;position:relative;width:55px;height:55px;border:1px solid #b1cabc;border-radius:50%;background:#e6f0e9}
+.craft-sheet-art i:nth-child(2){background:#f0dccd;border-color:#e4c3b0;margin-left:-15px;width:63px;height:63px}
+.craft-sheet-art i:nth-child(3){background:#dbe4f1;border-color:#b8c7d9;margin-left:-17px;width:46px;height:46px}
+.craft-process-sheet>p[data-process-kicker]{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.11em;color:#9a8d82;margin-bottom:11px}
+.craft-process-sheet h3{font:400 clamp(38px,3.6vw,50px)/.98 Instrument,Georgia,serif;letter-spacing:-.035em;margin-bottom:12px}
+.craft-process-sheet h3 em{color:#6b9686}
+.craft-process-sheet>p[data-process-description]{font:500 12px/1.75 Manrope,Arial,sans-serif;color:#76847e;max-width:315px;margin:0 0 24px}
+.craft-sheet-foot{border-top:1px solid #e3e4dc;width:100%;margin-top:auto;padding-top:12px;display:flex;justify-content:space-between;align-items:center;gap:20px;font:750 8px Manrope,Arial,sans-serif;letter-spacing:.09em;color:#9faaa3}
+.craft-sheet-foot b{color:#e29a78;font:400 22px Instrument,Georgia,serif}
+.craft-process-slip{position:absolute;z-index:3;right:18px;bottom:25px;background:#f2d7b8;color:#997958;transform:rotate(8deg);padding:15px 12px;max-width:122px;box-shadow:0 8px 20px #2a55451f;font:800 8px/1.5 Manrope,Arial,sans-serif;letter-spacing:.07em}
+@keyframes craft-sheet-turn{from{opacity:.62;transform:translateY(12px) rotate(-3.2deg)}to{opacity:1;transform:rotate(-2.5deg)}}
+.craft-process-board.is-turning .craft-process-sheet{animation:craft-sheet-turn .4s var(--craft-ease) both}
+/* Gentle first-arrival rhythm. Never hide headings before JavaScript executes. */
+@keyframes craft-soft-arrive{from{opacity:.78;translate:0 14px}to{opacity:1;translate:0 0}}
+.craft-entered{animation:craft-soft-arrive .8s var(--craft-ease) both}
+@keyframes craft-panel-rise{from{opacity:.74;translate:0 13px}to{opacity:1;translate:0 0}}
+.craft-tab-panel:not([hidden]) .craft-panel-visual{animation:craft-panel-rise .52s var(--craft-ease) both}
+.craft-tab-panel:not([hidden]) .craft-panel-copy{animation:craft-soft-arrive .6s var(--craft-ease) both}
+/* Tiny scroll-depth cues for actual imagery; the crop stays within its original frame. */
+.craft-proof-image img{transform:translate3d(0,var(--craft-image-depth,0px),0) scale(1.025);will-change:transform}
+.craft-proof-feature:hover .craft-proof-image img{transform:translate3d(0,var(--craft-image-depth,0px),0) scale(1.035)}
+.craft-founder-image img{transform:translate3d(0,var(--craft-image-depth,0px),0) scale(1.028);will-change:transform}
+.service-case-visual img{transform:translate3d(0,var(--craft-image-depth,0px),0) scale(1.02);will-change:transform}
+/* Polished tactile treatments shared across the six pages. */
+.craft-proof-feature,.craft-proof-note,.project-entry{transition:box-shadow .3s var(--craft-ease),translate .3s var(--craft-ease),border-color .3s}
+@media(hover:hover) and (pointer:fine){
+.craft-proof-feature:hover{translate:0 -4px;box-shadow:0 22px 42px #294a6412;border-color:#c2dce3}
+.craft-proof-note:hover{translate:0 -3px;box-shadow:0 15px 25px #365c6810}
+.project-entry:hover{translate:0 -4px;box-shadow:0 20px 32px #2948630f}
+}
+@media(max-width:1100px){
+.craft-process-steps button{grid-template-columns:70px 1fr 21px}
+.craft-process-board{padding:25px 20px}
+.craft-process-slip{right:10px;bottom:12px;max-width:104px;font-size:7px}
+}
+@media(max-width:760px){
+.craft-path-intro{position:static}
+.craft-path-inner{gap:36px}
+.craft-process-steps button{min-height:80px;grid-template-columns:67px 1fr 22px;column-gap:9px;padding:15px 9px}
+.craft-process-steps button>strong{font-size:18px}
+.craft-process-board{min-height:320px;padding:25px 19px}
+.craft-process-sheet{width:min(390px,94%);min-height:275px;padding:23px 21px;transform:rotate(-1deg)}
+.craft-process-sheet h3{font-size:43px}
+.craft-sheet-art{height:58px;margin:7px 0}
+.craft-sheet-art i{width:43px;height:43px}.craft-sheet-art i:nth-child(2){width:50px;height:50px}.craft-sheet-art i:nth-child(3){width:36px;height:36px}
+.craft-process-slip{display:none}
+.craft-entered{animation-duration:.48s}
+}
+@media(max-width:390px){
+.craft-process-steps button{grid-template-columns:52px 1fr 19px}
+.craft-process-steps button>span:first-child{font-size:8px}
+.craft-process-steps button>strong{font-size:16px}
+.craft-process-board{padding:22px 12px}
+.craft-process-sheet{width:96%}
+}
+@media(prefers-reduced-motion:reduce){
+.craft-entered,.craft-process-board.is-turning .craft-process-sheet,.craft-tab-panel:not([hidden]) .craft-panel-visual,.craft-tab-panel:not([hidden]) .craft-panel-copy{animation:none!important;translate:none!important}
+.craft-proof-image img,.craft-founder-image img,.service-case-visual img{transform:none!important;will-change:auto!important}
+.craft-proof-feature,.craft-proof-note,.project-entry{transition:none!important;translate:none!important}
+}
