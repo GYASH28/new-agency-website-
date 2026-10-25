@@ -78,3 +78,20 @@ body { overflow-x:clip; }
 .hero-note .pulse{animation:none}
 .workspace-tab,.footer-wordmark::before{transition:none}
 }
+
+/* Additional room for interactive studio tabs without cropping the bottom of the cards. */
+@media(min-width:761px){
+  .workspace{height:482px;}
+  .workspace-canvas{padding:28px 34px;}
+  .workspace-intro p{margin-bottom:13px;}
+}
+@media(max-width:760px){
+  .workspace{height:322px;}
+  .workspace-canvas{padding:15px 12px;}
+  .workspace-intro p{margin-bottom:8px;}
+  .workspace-cards .mini-card{min-height:138px;}
+}
+@media(max-width:390px){
+  .workspace{height:330px;}
+  .workspace-tab{font-size:8px;padding:6px 8px;}
+}
