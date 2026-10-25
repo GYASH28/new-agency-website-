@@ -80,3 +80,18 @@ test('Craft-inspired editorial scenes ship together and remain accessible',()=>{
   assert.match(motion,/ArrowRight/);
   assert.doesNotMatch(motion,/fetch\(|XMLHttpRequest/);
 });
+
+test('Craft studio field-note interaction and motion stay progressive',()=>{
+  const home=read('index.html');
+  assert.match(home,/data-process-playbook/);
+  assert.equal((home.match(/data-process-stage=/g)||[]).length,3);
+  assert.match(home,/aria-pressed="true"/);
+  const js=read('scripts/craft-fidelity.js');
+  assert.match(js,/ArrowDown/);
+  assert.match(js,/data-process-description/);
+  assert.match(js,/prefers-reduced-motion/);
+  const css=read('styles/craft-fidelity.css');
+  assert.match(css,/craft-process-board/);
+  assert.match(css,/craft-entered/);
+  assert.match(css,/prefers-reduced-motion/);
+});
