@@ -27,9 +27,17 @@ assert.ok(await page.locator('nav[aria-label="Main navigation"]').count(),'Missi
 }
 await page.goto(origin,{waitUntil:'networkidle'});
 assert.ok(await page.locator('[data-particle-field]').evaluate(c=>c.width>0&&c.height>0),'Signature particle canvas failed to size');
-assert.equal(await page.locator('.hero-v2-visual img').count(),2,'Hero must show genuine FakhriMart work on desktop and mobile');
-assert.equal(await page.locator('.showreel-project').count(),2,'Home must show the two independent experiments');
-assert.ok(await page.locator('link[href="/styles/art-direction.css"]').count(),'Art direction CSS missing');
+assert.equal(await page.locator('.craft-browser-picture img').count(),2,'Hero must show genuine FakhriMart work on desktop and mobile');
+assert.equal(await page.locator('.craft-proof-note').count(),2,'Home must show the two independent experiments');
+assert.ok(await page.locator('link[href="/styles/craft-fidelity.css"]').count(),'Art direction CSS missing');
+assert.equal(await page.locator('[role="tab"][data-craft-tab]').count(),3);
+await page.locator('[data-craft-tab="ai"]').click();
+assert.equal(await page.locator('[data-craft-panel="ai"]').isVisible(),true);
+assert.equal(await page.locator('[data-craft-panel="web"]').isVisible(),false);
+await page.locator('[data-craft-tab="ai"]').press('ArrowRight');
+assert.equal(await page.locator('[data-craft-panel="direction"]').isVisible(),true);
+await page.locator('[data-craft-tab="web"]').click();
+
 await page.goto(origin+'/work',{waitUntil:'networkidle'});
 assert.equal(await page.locator('.case-controls button[data-view]').count(),2,'Portfolio device switcher missing');
 await page.locator('.case-controls button[data-view="mobile"]').click();

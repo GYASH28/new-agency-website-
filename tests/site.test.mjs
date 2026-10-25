@@ -53,20 +53,30 @@ assert.match(read('styles/site.css'),/prefers-reduced-motion/);
 assert.doesNotMatch(read('index.html'),/lorem ipsum|placeholder\.com/i);
 });
 
-test('Art-direction assets and working editorial elements ship together',()=>{
-  for(const file of ['styles/art-direction.css','scripts/art-direction.js'])assert.ok(existsSync(resolve(process.cwd(),file)),file);
+test('Craft-inspired editorial scenes ship together and remain accessible',()=>{
+  for(const file of ['styles/craft-fidelity.css','scripts/craft-fidelity.js'])assert.ok(existsSync(resolve(process.cwd(),file)),file);
   for(const page of pages){
     const html=read(page);
-    assert.match(html,/href="\/styles\/art-direction\.css"/,page);
-    assert.match(html,/src="\/scripts\/art-direction\.js"/,page);
+    assert.match(html,/href="\/styles\/craft-fidelity\.css"/,page);
+    assert.match(html,/src="\/scripts\/craft-fidelity\.js"/,page);
+    assert.doesNotMatch(html,/href="\/styles\/studio-edition\.css"/,page);
     assert.equal((html.match(/<h1(?:\s|>)/g)||[]).length,1,page);
   }
   const home=read('index.html'),work=read('work.html'),plans=read('plans.html');
-  assert.match(home,/class="showreel-project"/);
-  assert.match(home,/REAL PROJECT:/);
+  assert.match(home,/class="hero-home craft-hero"/);
+  assert.match(home,/class="craft-atmosphere"/);
+  assert.match(home,/class="hero-workframe craft-browser"/);
+  assert.match(home,/VERIFIED CLIENT PROJECT/);
+  assert.match(home,/role="tablist"/);
+  assert.match(home,/data-craft-panel="web"/);
+  assert.match(home,/data-craft-panel="ai"/);
+  assert.match(home,/data-craft-panel="direction"/);
   assert.match(work,/data-case-switch="\.case-photo"/);
   assert.match(work,/aria-pressed="false"/);
   assert.match(plans,/class="studio-faq"/);
   assert.match(plans,/<details>/);
-  assert.match(read('scripts/art-direction.js'),/prefers-reduced-motion/);
+  const motion=read('scripts/craft-fidelity.js');
+  assert.match(motion,/prefers-reduced-motion/);
+  assert.match(motion,/ArrowRight/);
+  assert.doesNotMatch(motion,/fetch\(|XMLHttpRequest/);
 });
