@@ -452,3 +452,29 @@ html{scroll-behavior:auto}
 .featured-image{height:auto;min-height:240px;display:flex;align-items:flex-end;padding:28px 20px 0}
 .featured-image img{display:block;width:100%;height:auto;object-fit:contain;object-position:left top;border-radius:8px 8px 0 0}
 }
+
+
+/* Editorial motion: progressive enhancement; content is never hidden before JS. */
+@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
+  html.motion-ready .intro-row>div,
+  html.motion-ready .section-head,
+  html.motion-ready .featured-work,
+  html.motion-ready .directory-row,
+  html.motion-ready .approach-grid>div,
+  html.motion-ready .approach-steps li,
+  html.motion-ready .signal-copy,
+  html.motion-ready .footer-intro {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition: opacity .78s cubic-bezier(.19,1,.22,1), transform .9s cubic-bezier(.19,1,.22,1);
+  }
+  html.motion-ready .is-revealed {opacity:1!important;transform:translate3d(0,0,0)!important}
+  .hero-workframe {transform:translate3d(0,var(--hero-lift,0px),0);will-change:transform}
+  .featured-image img {transform:translate3d(0,var(--case-lift,0px),0) scale(1.025);will-change:transform}
+  .featured-work:hover .featured-image img {transform:translate3d(0,var(--case-lift,0px),0) scale(1.035)}
+  .case-photo>img:first-child {transform:translate3d(0,var(--case-detail-lift,0px),0) scale(1.025);will-change:transform}
+  .footer-wordmark {transform:translate3d(0,var(--footer-lift,0px),0)}
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero-workframe,.featured-image img,.case-photo>img:first-child,.footer-wordmark{transform:none!important}
+}
