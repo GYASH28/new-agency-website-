@@ -5,7 +5,8 @@
   "description": "Independent BRAYRO AI agency redesign — no production coupling",
   "scripts": {
     "dev": "python3 scripts/preview.py",
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --test tests/site.test.mjs",
+    "test:browser": "node tests/browser.test.mjs",
     "check": "node --check scripts/site.js && npm test"
   }
 }
