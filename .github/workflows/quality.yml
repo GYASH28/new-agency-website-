@@ -1,16 +1,43 @@
-name: Review build quality
+name: BRAYRO design and browser review
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
+permissions:
+  contents: read
 jobs:
-  review:
+  source:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Syntax and static tests
+      - name: Source and regression tests
         run: npm run check
-      - name: Python compilation
+      - name: Validate editorial interactions
+        run: node --check scripts/art-direction.js
+      - name: Preview server compilation
         run: python3 -m py_compile scripts/preview.py
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test dependencies
+        run: npm install --no-save playwright
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Test six responsive routes and interactions
+        run: npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: brayro-responsive-review
+          path: artifacts/previews/
+          retention-days: 7
