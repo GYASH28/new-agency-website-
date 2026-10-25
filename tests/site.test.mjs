@@ -52,3 +52,21 @@ assert.match(read('scripts/site.js'),/IntersectionObserver/);
 assert.match(read('styles/site.css'),/prefers-reduced-motion/);
 assert.doesNotMatch(read('index.html'),/lorem ipsum|placeholder\.com/i);
 });
+
+test('Art-direction assets and working editorial elements ship together',()=>{
+  for(const file of ['styles/art-direction.css','scripts/art-direction.js'])assert.ok(existsSync(resolve(process.cwd(),file)),file);
+  for(const page of pages){
+    const html=read(page);
+    assert.match(html,/href="\/styles\/art-direction\.css"/,page);
+    assert.match(html,/src="\/scripts\/art-direction\.js"/,page);
+    assert.equal((html.match(/<h1(?:\s|>)/g)||[]).length,1,page);
+  }
+  const home=read('index.html'),work=read('work.html'),plans=read('plans.html');
+  assert.match(home,/class="showreel-project"/);
+  assert.match(home,/REAL PROJECT:/);
+  assert.match(work,/data-case-switch="\.case-photo"/);
+  assert.match(work,/aria-pressed="false"/);
+  assert.match(plans,/class="studio-faq"/);
+  assert.match(plans,/<details>/);
+  assert.match(read('scripts/art-direction.js'),/prefers-reduced-motion/);
+});
