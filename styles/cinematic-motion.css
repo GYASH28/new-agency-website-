@@ -1,0 +1,99 @@
+/* BRAYRO — Cinematic motion layer, inspired by the visual principles of CoolDock / Supaste.
+   All source, imagery and UI remain first-party. Respect stillness before spectacle. */
+:root{--cinematic-ease:cubic-bezier(.22,1,.36,1)}
+/* A floating navigation capsule instead of a full-width opaque bar. */
+.site-header{height:0;top:0;background:transparent;border:0;backdrop-filter:none;-webkit-backdrop-filter:none;pointer-events:none}
+.site-header-inner{pointer-events:auto;width:min(1030px,calc(100% - 44px));height:64px;transform:translateY(15px);padding:0 20px;border:1px solid rgba(255,255,255,.92);border-radius:100px;background:rgba(251,251,250,.84);box-shadow:0 9px 36px rgba(39,68,77,.11),inset 0 1px rgba(255,255,255,.88);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);transition:box-shadow .35s,border-color .35s,background .35s}
+.site-header.scrolled .site-header-inner{background:rgba(253,252,249,.96);box-shadow:0 15px 46px rgba(29,50,59,.16);border-color:#e2e7e5}
+.primary-nav{gap:30px}.logo{min-width:164px}.header-contact{background:#202c32;color:white;border-color:#202c32;min-height:39px}
+.header-contact:hover{background:#3b505b;color:white}
+/* Atmospheric layers grow naturally out of the current sky hero—no borrowed landscapes. */
+.hero-home{isolation:isolate;padding-top:170px;padding-bottom:70px;background:linear-gradient(180deg,#d4edfc 0%,#ddf1fb 45%,#e5f0ed 78%,#f7f8f5 100%)}
+.hero-atmosphere{position:absolute;z-index:0;inset:0;overflow:hidden;pointer-events:none}
+.hero-atmosphere:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 35% 20% at 5% 25%,#fff9,transparent),radial-gradient(ellipse 30% 28% at 92% 14%,#fff9,transparent);opacity:.65}
+.atmosphere-glow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 30% at 51% 65%,#fbfff9bb,transparent 100%)}
+.horizon{position:absolute;display:block;left:-20%;width:140%;pointer-events:none;will-change:transform}
+.horizon-far{top:49%;height:50%;background:linear-gradient(180deg,#c3dbd6aa 2%,#e2eee9cf 82%);clip-path:ellipse(74% 35% at 44% 100%);opacity:.77}
+.horizon-mid{top:58%;height:46%;background:linear-gradient(180deg,#abcabfb3,#d4e6df);clip-path:ellipse(79% 40% at 80% 107%);opacity:.55}
+.horizon-near{top:70%;height:30%;background:linear-gradient(180deg,#d8e9e1,#f7f8f5);clip-path:ellipse(82% 52% at 20% 109%);opacity:.7}
+.hero-inner,.hero-display,.hero-bottom-label{position:relative;z-index:2}
+.hero-inner h1{max-width:1150px;position:relative;text-wrap:balance}
+.hero-inner .kicker{color:#3d7084}
+.hero-display{perspective:1400px;transform-style:preserve-3d}
+.hero-workframe{transform:translate3d(0,var(--depth-y,0px),0) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transform-origin:center 35%;will-change:transform;transition:box-shadow .4s var(--cinematic-ease)}
+.hero-workframe:hover{box-shadow:0 42px 102px rgba(30,72,103,.26),0 4px 16px rgba(30,72,103,.11)}
+.frame-phone{transform:translate3d(0,var(--phone-depth,0px),0);will-change:transform;transition:filter .3s}
+.hero-bottom-label{margin-top:48px}
+.site-header + main .page-lead{padding-top:170px}
+.studio-story{padding-top:170px}
+/* Clear visual hierarchy and moderated section pacing. */
+.intro-statement{position:relative;z-index:2}
+.featured-image{overflow:hidden}
+.featured-image img{transform:translate3d(0,var(--depth-y,0px),0) scale(1.05);will-change:transform;transition:filter .4s}
+.featured-work:hover .featured-image img{transform:translate3d(0,var(--depth-y,0px),0) scale(1.065)}
+.case-photo{isolation:isolate;perspective:1200px}
+.case-photo>img:first-child{transform:translate3d(0,var(--depth-y,0px),0);transition:opacity .65s var(--cinematic-ease),filter .65s var(--cinematic-ease),transform .65s var(--cinematic-ease)}
+.case-phone{transform:translate3d(0,var(--phone-depth,0px),0);transition:transform .72s var(--cinematic-ease),height .72s var(--cinematic-ease),right .72s var(--cinematic-ease),bottom .72s var(--cinematic-ease)}
+.case-photo[data-view-mode=mobile]>img:first-child{opacity:.2;filter:blur(3px) grayscale(.4);transform:scale(.94)}
+.case-photo[data-view-mode=mobile] .case-phone{height:85%;right:37%;bottom:-8%;transform:translateX(50%);filter:drop-shadow(0 25px 30px #273a4d60)}
+.case-head{flex-wrap:wrap}
+.case-controls{display:inline-flex;align-items:center;gap:2px;padding:4px;background:#f1f3f0;border:1px solid #e0e5e1;border-radius:100px;margin-left:auto}
+.case-controls button{font-size:10px;font-weight:800;letter-spacing:.01em;border:0;border-radius:50px;padding:10px 14px;min-width:82px;color:#5c7178;background:transparent;transition:background .2s,color .2s}
+.case-controls button[aria-pressed=true]{background:#21323a;color:#fff}
+.case-controls button:focus-visible{outline-offset:2px}
+.project-entry-visual{isolation:isolate;overflow:hidden}
+.project-glyph{transform:translate3d(0,var(--depth-y,0px),0);will-change:transform}
+.service-case-visual img,.studio-portrait img{transform:translate3d(0,var(--depth-y,0px),0) scale(1.045);will-change:transform}
+.knowledge-visual{position:relative;overflow:hidden}
+.knowledge-visual:after{content:"";position:absolute;inset:auto -15% -70% -15%;height:75%;background:radial-gradient(ellipse,#6e9eae33,transparent 75%);transform:translateY(var(--depth-y,0px));pointer-events:none}
+.direction-visual img{transform:translate3d(0,var(--depth-y,0px),0) rotate(-14deg)}
+.pricing-card{transition:transform .4s var(--cinematic-ease),box-shadow .4s var(--cinematic-ease)}
+.pricing-card:hover{transform:translateY(-5px);box-shadow:0 20px 44px #22363f12}
+.studio-portrait{isolation:isolate}
+.signal-field{overflow:hidden}
+/* The navigation and footer share one subtle progress accent. */
+.site-scroll-progress{position:absolute;height:2px;bottom:0;left:0;width:var(--page-progress,0%);background:linear-gradient(90deg,#527d91,#ed976f);pointer-events:none;border-radius:0 3px 3px 0;opacity:.6}
+.footer-wordmark-type{transition:filter .3s ease}
+.directory-row{transition:background .28s,padding .28s}
+/* Short, once-only motion; no blank content before JS, no forced scroll-scrubbing of text. */
+@keyframes enter-soft{from{opacity:.52;transform:translate3d(0,24px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+.motion-entered{animation:enter-soft .8s var(--cinematic-ease) both}
+@keyframes reveal-image{from{clip-path:inset(0 0 13% 0 round 0);filter:brightness(.86)}to{clip-path:inset(0 0 0 0 round 0);filter:brightness(1)}}
+.motion-image-entered{animation:reveal-image .95s var(--cinematic-ease) both}
+@media(max-width:1100px){
+.site-header-inner{width:min(960px,calc(100% - 40px))}
+.primary-nav{gap:24px}
+}
+@media(max-width:760px){
+.site-header-inner{height:59px;transform:translateY(10px);width:calc(100% - 24px);padding:0 12px 0 14px;border-radius:50px}
+.primary-nav{top:68px;left:0;right:0;border-radius:20px;overflow:hidden;box-shadow:0 17px 36px #243b5025}
+.hero-home{padding-top:136px;background:linear-gradient(180deg,#d8edfa 0%,#dceffa 65%,#f8f9f7 100%)}
+.hero-atmosphere{opacity:.5}
+.hero-atmosphere .horizon{display:none}
+.hero-inner h1{letter-spacing:-.078em}
+.site-header + main .page-lead{padding-top:139px}
+.studio-story{padding-top:140px}
+.hero-workframe{transform:none!important;will-change:auto}
+.frame-phone{transform:none!important}
+.featured-image img,.featured-work:hover .featured-image img,.service-case-visual img,.studio-portrait img{transform:none!important;will-change:auto}
+.case-photo>img:first-child{transform:none!important}
+.case-phone{transform:none!important}
+.case-photo[data-view-mode=mobile] .case-phone{height:76%;right:50%;bottom:-5%;transform:translateX(50%)!important}
+.case-head{gap:15px}
+.case-controls{order:3;flex-basis:100%;width:max-content;max-width:100%;margin:0}
+.case-controls button{font-size:10px}
+.project-glyph,.direction-visual img{transform:none!important;will-change:auto}
+.pricing-card:hover{transform:none;box-shadow:none}
+.motion-entered,.motion-image-entered{animation-duration:.5s}
+}
+@media(max-width:390px){
+.hero-home{padding-top:130px}
+.site-header + main .page-lead{padding-top:132px}
+.studio-story{padding-top:133px}
+.site-header-inner{width:calc(100% - 16px)}
+}
+@media(prefers-reduced-motion:reduce){
+.horizon,.hero-workframe,.frame-phone,.featured-image img,.service-case-visual img,.studio-portrait img,.project-glyph,.direction-visual img,.case-photo>img:first-child{transform:none!important;will-change:auto!important}
+.motion-entered,.motion-image-entered{animation:none!important}
+.site-header-inner,.pricing-card,.case-photo img{transition:none!important}
+}
