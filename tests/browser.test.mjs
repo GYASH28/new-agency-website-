@@ -35,6 +35,14 @@ try {
     assert.ok(await page.locator('h1').isVisible(), 'No visible h1 on ' + route);
     assert.ok(await page.locator('nav[aria-label="Main navigation"]').isVisible(), 'No navigation on ' + route);
   }
+  await page.goto(origin, { waitUntil: 'networkidle' });
+  assert.ok(await page.locator('.footer-wordmark').count(), 'Missing giant Brayro footer signature');
+  assert.ok(await page.locator('[data-particle-field]').count(), 'Missing original particle art');
+  assert.ok(await page.locator('[data-particle-field]').evaluate(c => c.width > 0 && c.height > 0), 'Canvas failed to size');
+  await page.getByRole('tab', { name: 'Build' }).click();
+  assert.match(await page.locator('.workspace-intro strong').textContent(), /Beautiful/);
+  await page.getByRole('tab', { name: 'Connect' }).click();
+  assert.match(await page.locator('.workspace-intro strong').textContent(), /Intelligence/);
   await page.goto(origin + '/plans', { waitUntil: 'networkidle' });
   await page.locator('[data-market]').selectOption('ae');
   assert.equal((await page.locator('[data-price="monthly-starter"]').first().textContent()).trim(), 'AED 690/month');
