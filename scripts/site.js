@@ -128,4 +128,48 @@ if(mark&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
 mark.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const rect=mark.getBoundingClientRect();mark.style.setProperty('--light-x',((e.clientX-rect.left)/rect.width*100).toFixed(0)+'%')},{passive:true});
 mark.addEventListener('pointerleave',()=>mark.style.setProperty('--light-x','50%'),{passive:true});
 }
+
+/* Shared motion language: reveal once, and subtle depth only on capable desktops. */
+const motionOK=matchMedia('(min-width:761px) and (prefers-reduced-motion:no-preference)');
+if(motionOK.matches && 'IntersectionObserver' in window){
+  const items=all('.intro-row>div,.section-head,.featured-work,.directory-row,.approach-grid>div,.approach-steps li,.signal-copy,.footer-intro');
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      entry.target.classList.add('is-revealed');
+      observer.unobserve(entry.target);
+    });
+  },{rootMargin:'0px 0px -6% 0px',threshold:.08});
+  document.documentElement.classList.add('motion-ready');
+  items.forEach((el,i)=>{
+    if(el.getBoundingClientRect().top<innerHeight*.95){el.classList.add('is-revealed');return}
+    observer.observe(el);
+  });
+  const depth=[
+    ['.hero-workframe','--hero-lift',-17],
+    ['.featured-image img','--case-lift',-11],
+    ['.case-photo>img:first-child','--case-detail-lift',-9],
+    ['.footer-wordmark','--footer-lift',-12]
+  ].map(([selector,prop,max])=>({el:one(selector),prop,max})).filter(x=>x.el);
+  let ticking=false;
+  function updateDepth(){
+    ticking=false;
+    if(document.hidden || !motionOK.matches)return;
+    for(const {el,prop,max} of depth){
+      const rect=el.getBoundingClientRect();
+      if(rect.bottom<0||rect.top>innerHeight)continue;
+      const progress=Math.max(0,Math.min(1,(innerHeight-rect.top)/(innerHeight+rect.height)));
+      el.style.setProperty(prop,(max*(progress-.5)*2).toFixed(1)+'px');
+    }
+  }
+  const queue=()=>{if(!ticking){ticking=true;requestAnimationFrame(updateDepth)}};
+  addEventListener('scroll',queue,{passive:true});
+  addEventListener('resize',queue,{passive:true});
+  motionOK.addEventListener('change',()=>{
+    if(!motionOK.matches){document.documentElement.classList.remove('motion-ready');depth.forEach(({el,prop})=>el.style.removeProperty(prop))}
+    else{document.documentElement.classList.add('motion-ready');queue()}
+  });
+  queue();
+}
+
 })();
