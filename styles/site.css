@@ -399,3 +399,14 @@ h1 em,h2 em,h3 em{font-family:Instrument,Georgia,serif;font-weight:400;letter-sp
 html{scroll-behavior:auto}
 *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+
+/* Tight-view refinements: typography follows the available width instead of forcing overflow. */
+@media(max-width:390px){
+.page-lead h1{font-size:clamp(49px,11.5vw,62px);overflow-wrap:normal}
+.case-head{align-items:flex-start;flex-direction:column;gap:14px}
+.case-desc h2{font-size:clamp(45px,13.8vw,58px)}
+.case-section .text-action{font-size:11px}
+.project-entry-copy{padding-inline:23px}
+.price-row h3{font-size:clamp(27px,9vw,35px)}
+.footer-intro h2{font-size:clamp(54px,12.8vw,65px)}
+}
