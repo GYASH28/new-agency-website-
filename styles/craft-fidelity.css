@@ -293,3 +293,31 @@ h1 em,h2 em,h3 em{letter-spacing:-.035em;font-style:italic}
 .craft-visual-paper,.craft-direction-sheet,.craft-ai-card{transform:none!important}
 .craft-browser:hover{box-shadow:0 14px 42px rgba(41,71,93,.17)}
 }
+
+/* Craft study fidelity: the sky lives on an inset, rounded sheet of paper. */
+.craft-hero{margin:15px 15px 0;border-radius:25px;box-shadow:inset 0 1px 0 #ffffff70}
+.craft-hero .craft-atmosphere:after{content:"";position:absolute;inset:0;opacity:.16;pointer-events:none;background-image:repeating-linear-gradient(90deg,transparent 0 5px,#ffffff13 5px 6px),repeating-linear-gradient(0deg,transparent 0 7px,#ffffff0f 7px 8px);mix-blend-mode:soft-light}
+/* Foreground UI appears to rise out of the cut-paper composition; the source content is authentic. */
+.craft-product-scene{transform:translateY(4px)}
+.craft-hero .pill-dark{background:#fff8f2e6;border-color:#fff9f6;color:#234151;box-shadow:0 6px 20px #47788a17}
+.craft-hero .pill-dark:hover{background:white;color:#152f3e}
+.craft-hero .pill-ghost{background:#ffffff55;border-color:#84afc277}
+.craft-paper-wave-front{background:#fbfbf8}
+.craft-paper-wave-back{background:#e8e8e4}
+.craft-hero .craft-browser{box-shadow:0 25px 66px #294e6e31,0 7px 17px #31527211}
+.craft-hero .craft-browser:hover{box-shadow:0 29px 74px #294e6e33,0 7px 17px #31527211}
+.craft-possibilities,.craft-proof,.craft-founder,.craft-path{position:relative}
+/* Keep icons and action targets consistent with Craft's pill language. */
+.market-control select{border-radius:12px}
+.contact-form .pill{border-radius:100px}
+.craft-tabs button:hover:not([aria-selected=true]){background:#ffffff7a}
+@media(max-width:760px){
+.craft-hero{margin:8px 8px 0;border-radius:17px}
+.craft-product-scene{transform:none}
+.craft-hero .craft-browser{box-shadow:0 15px 43px #2a587b25}
+.craft-hero .craft-browser:hover{box-shadow:0 15px 43px #2a587b25}
+.craft-hero .pill-dark,.craft-hero .pill-ghost{box-shadow:none}
+}
+@media(prefers-reduced-motion:reduce){
+.craft-tabs button:hover{transition:none}
+}
