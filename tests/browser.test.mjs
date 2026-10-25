@@ -27,8 +27,18 @@ assert.ok(await page.locator('nav[aria-label="Main navigation"]').count(),'Missi
 }
 await page.goto(origin,{waitUntil:'networkidle'});
 assert.ok(await page.locator('[data-particle-field]').evaluate(c=>c.width>0&&c.height>0),'Signature particle canvas failed to size');
-assert.equal(await page.locator('.hero-workframe img').count(),2,'Hero must show real work in responsive formats');
+assert.equal(await page.locator('.hero-v2-visual img').count(),2,'Hero must show genuine FakhriMart work on desktop and mobile');
+assert.equal(await page.locator('.showreel-project').count(),2,'Home must show the two independent experiments');
+assert.ok(await page.locator('link[href="/styles/art-direction.css"]').count(),'Art direction CSS missing');
+await page.goto(origin+'/work',{waitUntil:'networkidle'});
+assert.equal(await page.locator('.case-controls button[data-view]').count(),2,'Portfolio device switcher missing');
+await page.locator('.case-controls button[data-view="mobile"]').click();
+assert.equal(await page.locator('.case-photo').getAttribute('data-view-mode'),'mobile');
+assert.equal(await page.locator('.case-controls button[data-view="mobile"]').getAttribute('aria-pressed'),'true');
+await page.locator('.case-controls button[data-view="desktop"]').click();
+assert.equal(await page.locator('.case-photo').getAttribute('data-view-mode'),'desktop');
 await page.goto(origin+'/plans',{waitUntil:'networkidle'});
+assert.equal(await page.locator('.studio-faq details').count(),4,'Pricing FAQ missing');
 await page.locator('[data-market]').selectOption('ae');
 assert.equal((await page.locator('[data-price="monthly-starter"]').first().textContent()).trim(),'AED 690/month');
 assert.match(await page.locator('[data-offer="monthly-starter"]').getAttribute('href'),/market=ae/);
@@ -69,5 +79,5 @@ await page.goto(origin,{waitUntil:'networkidle'});
 await page.screenshot({path:'artifacts/previews/home-mobile.png'});
 await page.screenshot({path:'artifacts/previews/home-mobile-full.png',fullPage:true});
 assert.deepEqual(errors,[],'Browser JavaScript or resource errors');
-console.log('PASS: six rebuilt routes, markets, contact, responsive widths 320/390/768/1440, particle canvas, giant footer, menus, and no runtime/HTTP errors.');
+console.log('PASS: six editorial routes, portfolio switcher, markets, FAQ, contact, responsive widths 320/390/768/1440, particle canvas, giant footer, menus, and no runtime/HTTP errors.');
 }finally{await browser?.close();server.kill('SIGTERM')}
