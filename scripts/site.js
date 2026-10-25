@@ -172,4 +172,26 @@ if(motionOK.matches && 'IntersectionObserver' in window){
   queue();
 }
 
+
+/* Unified navigation state and scroll progress, without a duplicate motion loop. */
+const siteHeader=one('.site-header');
+if(siteHeader){
+  const progress=document.createElement('span');
+  progress.className='site-scroll-progress';
+  progress.setAttribute('aria-hidden','true');
+  siteHeader.append(progress);
+  let scheduled=false;
+  const paint=()=>{
+    scheduled=false;
+    const y=window.scrollY||0;
+    const range=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+    siteHeader.classList.toggle('scrolled',y>40);
+    siteHeader.style.setProperty('--page-progress',(Math.min(100,Math.max(0,y/range*100))).toFixed(2)+'%');
+  };
+  const queue=()=>{if(!scheduled){scheduled=true;requestAnimationFrame(paint)}};
+  addEventListener('scroll',queue,{passive:true});
+  addEventListener('resize',queue,{passive:true});
+  paint();
+}
+
 })();
