@@ -179,7 +179,7 @@ if(siteHeader){
   const progress=document.createElement('span');
   progress.className='site-scroll-progress';
   progress.setAttribute('aria-hidden','true');
-  siteHeader.append(progress);
+  (siteHeader.querySelector('.site-header-inner')||siteHeader).append(progress);
   let scheduled=false;
   const paint=()=>{
     scheduled=false;
