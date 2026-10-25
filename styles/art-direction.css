@@ -319,3 +319,7 @@ a,button{touch-action:manipulation}
  .showreel-art .showreel-big{translate:none}
 }
 @media(prefers-reduced-motion:reduce){.showreel-art .showreel-big{transition:none;translate:none}}
+
+/* Align the mobile dropdown and progress line to the floating navigation capsule. */
+.site-header-inner{position:relative}
+@media(max-width:760px){.primary-nav{top:69px;left:0;right:0;width:100%;border:1px solid #dce1dd;border-radius:18px}}
