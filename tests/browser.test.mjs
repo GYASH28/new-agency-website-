@@ -42,7 +42,10 @@ await page.setViewportSize({width,height:900});
 for(const route of routes){
 await page.goto(origin+route,{waitUntil:'domcontentloaded'});
 const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
-assert.ok(overflow<=3,'Horizontal overflow on '+route+' at '+width+'px: '+overflow+'px');
+if(overflow>3){
+ const offenders=await page.evaluate(()=>[...document.querySelectorAll('body *')].map(el=>({element:el.tagName.toLowerCase()+'.'+(el.className?.baseVal||el.className||''),right:Math.round(el.getBoundingClientRect().right),scrollWidth:el.scrollWidth,width:Math.round(el.getBoundingClientRect().width)})).filter(x=>x.right>innerWidth+3).slice(0,12));
+ throw new Error('Horizontal overflow on '+route+' at '+width+'px: '+overflow+'px; elements: '+JSON.stringify(offenders));
+}
 }
 }
 for(const width of [320,390]){
