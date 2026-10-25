@@ -1,0 +1,26 @@
+name: Browser visual smoke
+on:
+  push:
+  pull_request:
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser-test tooling (CI only)
+        run: |
+          npm install --no-save --no-package-lock playwright@1.58.2
+          npx playwright install --with-deps chromium
+      - name: Run end-to-end visual smoke
+        run: node tests/browser.test.mjs
+      - name: Upload screenshots for manual comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: brayro-visual-smoke
+          path: artifacts/previews/
+          if-no-files-found: ignore
