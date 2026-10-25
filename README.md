@@ -1,48 +1,67 @@
-# BRAYRO AI — the new agency experience
+# BRAYRO AI — Art-directed agency website
 
-A separate, Craft-*inspired* visual direction for **BRAYRO AI**, using the agency's own branding, assets, evidence and approved service prices. The interface is an original agency website, not a copy of Craft's branding or source.
+A separate creative-technology studio website for **BRAYRO AI**.
+Six responsive pages, native agency identity, actual client imagery and a focused motion system.
+This is **original BRAYRO work**, influenced by reference principles rather than copied visual assets, source, awards or fabricated case studies.
 
-## Safety boundary
+## Open the preview
 
-- **Only working repository:** `GYASH28/new-agency-website-`
-- **Original source (read-only):** `GYASH28/BRAYROAI-`
-- **Original live site (untouched):** https://brayroai.vercel.app/
-- This redesign is delivered in `feat/craft-inspired-brayro-redesign` for review. Do **not** connect this repo to the existing production Vercel project.
-- If deploying a preview, create a **separate Vercel project** and verify the project/domain settings.
+**[BRAYRO agency preview](https://brayro-new-agency-preview.vercel.app/)**  
+Vercel project: `brayro-new-agency-preview`  
+Working repository: `GYASH28/new-agency-website-`, default branch `main`.
+
+The separate preview has deployed successfully through Vercel; this does not mean every browser or viewport has yet been visually approved.
+
+### Safety boundary
+
+- **Do not modify** the original production repository `GYASH28/BRAYROAI-`.
+- **Do not modify** the original live project/domain `https://brayroai.vercel.app/`.
+- Keep the new preview in its own Vercel project until it passes final visual review and receives explicit approval.
+- All first-party screenshots, fonts and brand assets remain local in this repository.
 
 ## Pages
 
-`/` Home · `/work` Work · `/services` Services · `/plans` Plans · `/studio` Studio · `/contact` Contact.
+| Route | Purpose |
+| --- | --- |
+| `/` | Studio statement, FakhriMart preview, independent work, services, process and particle signature |
+| `/work` | Actual client case, interactive desktop/mobile project viewer, independent Lernio AI and BRACE explorations |
+| `/services` | Web experiences, applied AI and creative direction, plus the studio process |
+| `/plans` | Market-specific website and AI pricing, with plain-language FAQ |
+| `/studio` | Real founder story, local portrait and principles |
+| `/contact` | User-initiated email/WhatsApp brief. No backend claim or silently collected lead data |
 
-The site is a lightweight, dependency-free static multi-page build using vanilla HTML, CSS, JS, locally copied agency media and fonts. No credentials, backend or deployment tokens are needed.
+The work makes the boundary between client work and self-initiated projects explicit. Prices retain the approved India, UAE and Australia figures and are not mechanically converted currencies.
+
+## Visual & interaction architecture
+
+- `styles/site.css`: baseline layout, typography, responsive treatment.
+- `styles/art-direction.css`: high-level BRAYRO art direction, work/gallery composition and shared design system.
+- `scripts/site.js`: navigation, consent-first enquiry, regional pricing, BRAYRO canvas particles and restrained scroll depth.
+- `scripts/art-direction.js`: page highlights, portfolio view toggles, accessible experimental project gestures and editorial entrance timing.
+
+Motion respects reduced-motion preferences, and decorative effects are toned down on touch/mobile devices. The site intentionally avoids heavy remote motion libraries and fake UI screenshots.
+
+Design research, mappings and QA caveats: [docs/ART_DIRECTION_RESEARCH.md](docs/ART_DIRECTION_RESEARCH.md).
 
 ## Run locally
 
 ```bash
 python3 scripts/preview.py
-# open http://127.0.0.1:4173
+# http://127.0.0.1:4173
 ```
 
 ```bash
-npm test
+npm run check
+# Browser test requires Playwright + installed Chromium:
+npm run test:browser
 ```
 
-The preview server resolves clean routes the same way as the included `vercel.json` rewrites. Regional pricing is selectable for India/UAE/Australia, retaining original independent offer prices. The contact form opens a **user-initiated** email or WhatsApp draft; it does not claim to submit leads to a backend.
+The `.github/workflows/quality.yml` workflow runs source checks and Playwright responsive browser tests on pushes and pull requests. Browser tests exercise 320, 390, 768 and 1440 widths and save inspection screenshots as a CI artifact. A running CI workflow is not a claim of passing results.
 
-## Review checklist
+## Final review still required
 
-- Test all pages at 1440, 768, 390 and 320 CSS pixels.
-- Test desktop navigation, mobile menu, Escape-close, project links and keyboard focus.
-- Test regional price switching and offer-linked contact preselection.
-- Confirm external projects and contact channels still belong to Brayro.
-- Confirm reduced-motion accessibility and touch targets.
-- Test cross-browser behavior before approving any public deployment.
-- Retain the `robots.txt` prelaunch restriction until the new site's own domain is ready.
+Inspect every page on real desktop and mobile screens; compare actual screenshots rather than CSS alone. Look closely at text clipping, image quality/crops, nav overlays, mixed font loading, particles/performance, keyboard navigation, and region-selected pricing. Approve deployment to the original agency domain only after that review and explicit authorization.
 
-## Tooling and sources
+## Assets, provenance & REA
 
-`docs/REA_WORKFLOW.md` describes how the optional MIT-licensed [REA](https://github.com/morluto/rea) agent toolkit can help investigate observable web behaviors; no REA code or runtime ships to customers.
-
-`docs/ASSET_PROVENANCE.md` lists exact source assets, licensing considerations, and evidence boundaries.
-
-This review build is **not deployed**, and the original production website was not modified.
+The optional MIT-licensed REA toolkit is for learning from observable web behaviors, not for copying third-party code or branding. See `docs/REA_WORKFLOW.md`, `docs/ASSET_PROVENANCE.md`, and the research log for evidence limits.
