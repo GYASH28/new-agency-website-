@@ -410,3 +410,14 @@ html{scroll-behavior:auto}
 .price-row h3{font-size:clamp(27px,9vw,35px)}
 .footer-intro h2{font-size:clamp(54px,12.8vw,65px)}
 }
+
+@media(max-width:390px){
+/* Vertical information flow is more legible than tiny horizontal diagram labels. */
+.knowledge-flow{display:flex;flex-direction:column;gap:7px}
+.knowledge-flow b{font-size:19px}
+.knowledge-flow span{font-size:9px}
+.flow-line{width:1px;height:15px;min-width:1px;flex:0 0 15px}
+.knowledge-visual{min-height:435px;height:auto}
+.direction-visual strong{font-size:clamp(42px,11vw,55px)}
+.service-essay-copy h2{font-size:clamp(47px,11vw,62px)}
+}
